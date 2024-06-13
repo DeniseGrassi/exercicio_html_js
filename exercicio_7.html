@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>exercicio_html_js</title>
+    
+</head>
+<body>
+    <div class="container">
+        <form id="formulario">     
+            <h1> Validação dos Campos "A" e "B" </h1>
+
+            <input type="number" id="campoA" required placeholder="Defina o Campo A" />
+            <input type="number" id="campoB" required placeholder="Defina o Campo B" />
+            <button type="submit" id="botao">COMPARAR</button>
+
+        </form>
+
+        <p class="resultado_certo"></p>
+        <p class="resultado_erro"></p>
+    </div>
+
+    <script>
+        function vValor(valorCampoA, valorCampoB) {
+            return valorCampoA < valorCampoB;
+        }
+
+        const form = document.getElementById("formulario");
+        form.addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            const A = document.getElementById("campoA");
+            const B = document.getElementById("campoB");
+
+            const valorCampoA = Number(A.value);
+            const valorCampoB = Number(B.value);
+
+            const msgSucesso = `Formulário válido. O número <b>${valorCampoB}</b> é maior que o número <b>${valorCampoA}</b>.`;
+            const msgErro = `Formulário inválido. O número <b>${valorCampoB}</b> é menor que o número <b>${valorCampoA}</b>`;
+
+            const mS = document.querySelector(".resultado_certo");   
+            const mErr = document.querySelector(".resultado_erro");
+
+            const frmCalculo = vValor(valorCampoA, valorCampoB);
+
+            if (frmCalculo) {
+                mS.innerHTML = msgSucesso;       
+                mErr.innerHTML = ""; 
+            } else { 
+                mErr.innerHTML = msgErro;
+                mS.innerHTML = ""; 
+            }
+        });
+    </script>
+</body>
+</html>
